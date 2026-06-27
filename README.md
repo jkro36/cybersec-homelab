@@ -25,8 +25,8 @@ A fully isolated multi-VM security research environment using VMware Fusion. Thi
 - **Payloads:** msfvenom
 
 ## Exercises Completed
-- [Exercise 01 — Basic C2 Setup and Session Establishment](exercises/exercise-01-basic-c2.md)
-- [Exercise 02 — C2 Traffic Detection with Security Onion](exercises/exercise-02-detection.md)
+- [Exercise 01 — Basic C2 Setup and Session Establishment](exercises/01-exercise-c2.md)
+- [Exercise 02 — C2 Traffic Detection with Security Onion](exercises/02-exercise-detection.md)
 
 ## Skills Demonstrated
 - Network segmentation and air-gapped lab design
@@ -39,12 +39,13 @@ A fully isolated multi-VM security research environment using VMware Fusion. Thi
 - Incident response procedures
 
 ## Setup Guides
-- [Kali Linux Setup](setup-guides/kali-setup.md)
-- [Windows Victim Setup](setup-guides/windows-victim-setup.md)
-- [Security Onion Setup](setup-guides/security-onion-setup.md)
-- [Network Isolation Configuration](setup-guides/network-isolation.md)
+- [VMWare Setup](setup-guides/01-vmware-setup.md)
+- [Network Configuration](setup-guides/02-network-setup.md)
+- [Kali Linux Setup](setup-guides/03-kali-setup.md)
+- [Security Onion Setup](setup-guides/04-security-onion-setup.md)
+- [Windows Victim Setup](setup-guides/05-windows-victim-setup.md)
 
-## ⚠️ Disclaimer
+## ⚠️  Disclaimer
 This lab is for **educational purposes only**. All activities are performed
 in an isolated, air-gapped environment with no internet connectivity.
 Never perform these techniques on systems you do not own or have 
