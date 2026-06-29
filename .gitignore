@@ -1,0 +1,24 @@
+# Secrets & Credentials
+*.env
+*.pem
+*.key
+*.crt
+secrets/
+credentials/
+
+#.DS_Store
+.AppleDouble
+
+# Editor
+.vscode/
+*.swp
+
+# VM / large files
+*.ova
+*.vmdk
+*.iso
+*.qcow2
+
+# Logs
+*.log
+logs/
