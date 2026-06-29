@@ -6,7 +6,8 @@
 secrets/
 credentials/
 
-#.DS_Store
+#macOS noise
+.DS_Store
 .AppleDouble
 
 # Editor
