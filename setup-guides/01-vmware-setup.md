@@ -34,8 +34,8 @@ Before you begin, ensure your system meets the following requirements.
 2. Click **DOWNLOAD NOW**. or [Click here](https://support.broadcom.com/). You will be redirected to the Broadcom Support Portal.   
 > **Note:** VMware Fusion is distributed by Broadcom,so creating a Broadcom account is required.
 3. Verify your email address by following the instructions sent to your inbox.
-> **Important:** Thi step is required before you can sign in.
-4. [sign in.](https://access.broadcom.com/default/ui/v1/signin/)
+> **Important:** This step is required before you can sign in.
+4. [Sign in.](https://access.broadcom.com/default/ui/v1/signin/)
 5. Select the latest **VMware Fusion Pro** release.
 6. Choose the installer that matches for your Mac:
    - **Apple Silicon** (M1, M2, M3, M4, M5, etc.)
@@ -125,13 +125,13 @@ Continue with:
 
 ## Troubleshooting
 
-### VMware will not open
+### VMware will not open?
 
 - Verify macOS compatibility.
 - Ensure VMware Fusion is located in the Applications folder.
 - Restart macOS.
 
-### Installer is blocked
+### Installer is blocked?
 
 Navigate to:
 
