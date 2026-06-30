@@ -1,0 +1,321 @@
+<!-- git-cheat-sheet.md -->
+
+
+# Git Cheat Sheet
+
+A personal reference covering setup, daily workflow, and troubleshooting for working with Git on macOS.
+
+---
+
+## 1. Initial macOS Setup
+
+```bash
+# Install Homebrew (if not already installed)
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Install Git
+brew install git
+git --version
+```
+
+### Git Identity & Config
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+git config --global color.ui auto
+
+# View all settings
+git config --global --list
+```
+
+---
+
+## 2. SSH Key Setup
+
+```bash
+# Generate an Ed25519 key (preferred over RSA)
+ssh-keygen -t ed25519 -C "youremail@example.com" -f ~/.ssh
+
+# Start agent and add key
+eval "$(ssh-agent -s)"
+ssh-add --apple-use-keychain ~/.ssh
+
+# Copy public key to clipboard, then add it on GitHub
+# Settings → SSH and GPG Keys → New SSH key
+pbcopy < ~/.ssh/id_ed25519.pub
+
+# Test connection
+ssh -T git@github.com
+```
+
+### `~/.ssh/config`
+
+```
+Host *
+  IdentityFile ~/.ssh/id_ed25519
+  IdentitiesOnly yes
+  AddKeysToAgent yes
+  UseKeychain yes
+```
+
+`IdentitiesOnly yes` forces SSH to use only the specified key — fixes the issue where it defaults to an old `id_rsa` and asks for a forgotten passphrase.
+
+---
+
+## 3. Cloning a Repo
+
+```bash
+mkdir -p ~/Projects && cd ~/Projects
+git clone git@github.com:REPO_USERNAME/repo_name.git
+cd repo_name
+
+git remote -v   # verify remote is set correctly
+```
+
+---
+
+## 4. Branching
+
+```bash
+git checkout -b feature/initial-structure   # create + switch to new branch
+git switch -c feature/initial-structure     # same thing, modern syntax
+
+git branch              # list local branches
+git branch -m new-branch-name	Rename the current branch
+git branch -m old-branch-name new-branch-name 	# Rename different local branch
+git branch -d branch-name   # delete a branch
+```
+
+**Naming convention** (the `/` is just a folder-like grouper, not a Git feature):
+
+| Prefix | Used for |
+|---|---|
+| `feature/` | New functionality |
+| `fix/` or `bugfix/` | Bug fixes |
+| `hotfix/` | Urgent production fixes |
+| `chore/` | Maintenance, config, cleanup |
+| `docs/` | Documentation only |
+| `lab/` | Homelab-specific work |
+
+---
+
+## 5. Daily Workflow
+
+```bash
+
+git checkout main		# switch to main branch
+git pull origin main		# update the local main branch to match the remote main's branch
+git branch              	# list local branches
+git checkout branch_name	# switch to the branch you want to work on. 
+git rebase main  		# Update the said branch so it sits on top of updated main
+
+# make changes			# Performed task(s)
+git status                  	# see what's changed
+git add .                   	# stage all changes or 
+git add file_name             	# stage only one file
+git commit -m "add message"	#commit changes
+git push origin current-branch-name
+
+# Go online to Github
+# Compare and create a Pull Request → review → merge on main branch, optionally delete the said branch then return to the terminal:
+
+git checkout main		# switch to main branch
+git pull origin main		# update the local main branch to match the remote main's branch
+git checkout branch_name	# switch btw branches to update it against the local main branch 
+git rebase main  		# Update the said branch so it sits on top of updated main 
+
+```
+
+> **Important:** pulling `main` does **not** update other branches automatically. Each branch must be updated on its own — run the last two commands for each branch in local repo. Also see below for additional info.
+
+---
+
+## 6. Fetch vs Pull vs Rebase
+
+| | `git fetch` | `git pull` | `git pull --rebase` |
+|---|---|---|---|
+| Downloads remote changes | ✅ | ✅ | ✅ |
+| Merges into current branch | ❌ | ✅ | ✅ |
+| Creates a merge commit | ❌ | Often ✅ | ❌ |
+| Keeps history linear | ✅ | ❌ | ✅ |
+
+```bash
+# Fetch — see what changed without touching your work
+git fetch origin
+git log origin/main --oneline
+git diff HEAD origin/main
+
+# Rebase — replay your branch on top of latest main
+git checkout feature/initial-structure
+git fetch origin
+git rebase origin/main
+
+# Interactive rebase — clean up commits before a PR
+git rebase -i HEAD~3
+# pick / squash / reword / drop
+
+# Push after rebase (safer than --force)
+git push --force-with-lease origin feature/initial-structure
+```
+
+**Golden rule:** never rebase a branch others are also working on — it rewrites commit history.
+
+---
+
+## 7. File & Folder Operations
+
+| Action | Shell command | Git command | Notes |
+|---|---|---|---|
+| Create file | `touch file.txt` | — | No git equivalent |
+| Create folder | `mkdir folder` | — | Git ignores empty folders entirely |
+| Delete file | `rm file.txt` | `git rm file.txt` | `git rm` stages the deletion too |
+| Move/rename | `mv old new` | `git mv old new` | `git mv` preserves rename history |
+
+### Empty folders aren't tracked by Git
+
+```bash
+mkdir logs tools playbooks
+git status   # nothing shows — Git doesn't track empty dirs
+
+# Fix: add a placeholder file
+touch logs/.gitkeep tools/.gitkeep playbooks/.gitkeep
+git add .
+```
+
+### Useful inspection commands
+
+```bash
+git ls-files              # files Git is tracking
+git ls-files --others     # untracked files
+git ls-files --ignored    # ignored files
+git status --ignored      # status including ignored files
+git check-ignore -v file  # check if/why a file is ignored
+```
+
+---
+
+## 8. Create a .gitignore file:
+
+```bash
+cat > .gitignore << 'EOF'
+# Secrets & credentials
+*.env
+*.pem
+*.key
+*.crt
+secrets/
+credentials/
+
+# macOS noise
+.DS_Store
+.AppleDouble
+
+# Editor
+.vscode/
+*.swp
+
+# VM / large files
+*.ova
+*.vmdk
+*.iso
+*.qcow2
+
+# Logs
+*.log
+logs/
+EOF
+```
+
+| Pattern | Why it's ignored |
+|---|---|
+| `*.env` | Environment variables — DB passwords, API keys |
+| `*.pem` / `*.key` | Private keys — SSH, SSL/TLS, VPN |
+| `*.crt` | Public certificates — minor infra info leak |
+| `secrets/`, `credentials/` | Convention folders for sensitive config |
+| `.DS_Store` | macOS Finder metadata — pure noise |
+| `.AppleDouble` | macOS metadata created on non-Mac filesystems |
+| `.vscode/` | Editor settings — often local/personal, breaks across machines |
+| `*.swp` | Vim crash-recovery swap files |
+| `*.ova` / `*.vmdk` / `*.iso` / `*.qcow2` | VM disk images / installers — huge binaries, not suited for Git |
+| `*.log`, `logs/` | Runtime logs — grow constantly, can leak IPs/usernames/paths |
+
+### Important caveat
+
+`.gitignore` only prevents **untracked** files from being added. It does **not** retroactively untrack files already committed.
+
+```bash
+# Already committed by mistake? Stop tracking without deleting from disk:
+git rm --cached secrets.env
+git rm --cached -r secrets/
+git commit -m "chore: stop tracking secrets.env"
+```
+
+> If a secret was ever committed, assume it's compromised — it still lives in commit history. Rotate the credential.
+
+Optional extra safety net:
+```bash
+brew install git-secrets
+git secrets --install
+git secrets --register-aws
+```
+
+---
+
+## 9. Create a Local-Only / Network-Shared Repos (No GitHub)
+
+### local-Only, no sharing
+```bash
+git init my-project
+cd my-project
+git add .
+git commit -m "first commit"
+# No remote repo, therefore no push/pull
+```
+
+### Bare repo — share over your local network via SSH or Users on same system. 
+
+```bash
+# On the host machine
+mkdir -p ~/git-server		# -p flag means: Create parent directories as needed, and don't complain if they already exist.
+cd ~/git-server
+git init --bare cybersec-homelab.git
+
+# Connect your working repo to it
+cd ~/Projects/cybersec-homelab
+git remote add origin ~/git-server/cybersec-homelab.git
+git push -u origin main
+
+# Find your Mac's local IP for others to clone
+ipconfig getifaddr en0
+
+# Someone else on the network clones via:
+git clone user@192.168.1.x:~/git-server/cybersec-homelab.git
+```
+
+| Step | GitHub hosted | Local bare repo |
+|---|---|---|
+| Clone | `git clone git@github.com:...` | `git clone user@192.168.1.x:~/git-server/repo.git` |
+| Pull request | GitHub UI | None — push directly or merge locally |
+| Access control | GitHub permissions | SSH user accounts / `authorized_keys` |
+
+Restrict a user to git-only access (no full shell):
+```bash
+chsh -s $(which git-shell) username
+```
+
+---
+
+## 10. Quick Reference
+
+| Task | Command |
+|---|---|
+| Check status | `git status` |
+| Commit history | `git log --oneline --graph` |
+| See changes | `git diff` |
+| Undo unstaged changes | `git restore <file>` |
+| Unstage a file | `git restore --staged <file>` |
+| Stash work in progress | `git stash` / `git stash pop` |
+| Sync fork with upstream | `git fetch upstream && git merge upstream/main` |
+| List tracked files | `git ls-files` |
+

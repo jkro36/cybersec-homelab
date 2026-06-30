@@ -8,6 +8,7 @@ credentials/
 
 #macOS noise
 .DS_Store
+**/.DS_Store
 .AppleDouble
 
 # Editor
