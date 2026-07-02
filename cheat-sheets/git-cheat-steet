@@ -111,9 +111,12 @@ git checkout branch_name	# switch to the branch you want to work on.
 git rebase main  		# Update the said branch so it sits on top of updated main
 
 # make changes			# Performed task(s)
+git restore <file>		# Discard changes in working directory.
 git status                  	# see what's changed
 git add .                   	# stage all changes or 
 git add file_name             	# stage only one file
+git restore --staged .		# un-stage only one file or directory
+git restore --staged filename	# un-stage all files and directories
 git commit -m "add message"	#commit changes
 git push origin current-branch-name
 
