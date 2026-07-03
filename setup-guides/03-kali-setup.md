@@ -93,93 +93,160 @@ Configure the following:
 
 ![](../screenshots/kali-setup/07-cpu-memory.png)
 
+Click **Apply**.
+
 ![](../screenshots/kali-setup/08-disksize.png)
+
+
 ---
 
 # Step 4 — Install Kali Linux
 
-Start the virtual machine.
+<!-- Start here -->
 
-When the boot menu appears:
+### Boot menu loads up: 
+ 
+ - Select **Graphical install** (easier than text install; same result)
+ ![](../screenshots/kali-setup/09-installer-method.png)
+ - Language: English (or your preference)
+ ![](../screenshots/kali-setup/10-language.png)
+ 
+ - Location: United States (or your preference)
+ ![](../screenshots/kali-setup/11-location.png)
+ - Keyboard: American English (or your preference)
+ ![](../screenshots/kali-setup/12-keyboard-selection.png)
+ - Network — hostname:
+ ![](../screenshots/kali-setup/13-network-hostname.png)
+ 
+ > **Note:** leave as kali unless you want a custom name
+ 
+ *→* Network —> domain name:
 
-1. Select **Graphical Install**.
-2. Choose your preferred language.
-3. Select your region.
-4. Configure the keyboard layout.
-5. Enter a hostname.
+![](../screenshots/kali-setup/14-network-domain-name.png) 
 
-Example:
+> **Note:** Leave it blank — just hit Continue. You don't need a domain for a lab VM.
+ 
+ ### Set up User Account:
+ 
+*→* Full name for your account. (e.g. kali)
+ ![](../screenshots/kali-setup/14-network-domain-name.png)
+ 
+ *→* Username for your account:
+ ![](../screenshots/kali-setup/15-username.png)
 
-```text
-kali
+ > **Note:** Pick a username (e.g. kali or your handle) — this is your login name . Use something simple you'll remember
+ 
+*→* Password for your account:
+![](../screenshots/kali-setup/16-user-password.png)
+
+  > **Note:** Set a strong password and write it down. Even in a lab, build the habit; a passphrase you'll remember but isn't trivial
+ 
+- Select your timezone: 
+
+ ![](../screenshots/kali-setup/17-timezone.png)
+ 
+### Disk partitioning (the part people fear — keep it simple):
+ 
+- Partitioning method:  "Guided - use entire disk"
+
+ ![](../screenshots/kali-setup/18-partition-method.png)
+
+  > **Note:** This is the right choice. It's a VM with a virtual disk — there's nothing else on it to protect, so let the installer handle everything automatically. Don't overthink this.
+
+ - Select disk to partition: There's only one (your virtual disk) → select it
+
+  ![](../screenshots/kali-setup/19-selecy-disk2partition.png)
+ 
+ - Partitioning scheme: Choose **"All files in one partition (recommended for new users)"**
+
+ > **Important:** Recommended for a lab VM. Simpler. The other options (separate /home, etc.) add complexity you don't need here.
+ 
+  ![](../screenshots/kali-setup/20-partitioning-scheme.png)
+
+   
+ 
+ - Review disk partition Configuration: Select **"Finish partitioning and write changes to disk"** 
+  ![](../screenshots/kali-setup/21-review-partition-configuration.png)
+
+ - Write the changes to disks?
+  > **⚠️ Note** This is the point of no return for the disk, but it's a fresh virtual disk so there's nothing to lose. Confirm Yes.
+
+ ![](../screenshots/kali-setup/22-write2disk.png)
+
+
+The base system installs now — takes a few minutes.
+
+
+
+### Part 4 — Software selection (important choices):
+
+- Software selection screen — this determines what gets installed. Recommended:
+![](../screenshots/kali-setup/23-software2install.png)
+
+> **Note** Hit Continue — this is the longest step as it downloads and installs the toolset. Be patient.
+
+Part 5 — GRUB bootloader:
+Install the GRUB boot loader? → Yes
+Device for bootloader installation → Select the disk (it'll show something like /dev/vda or /dev/sda) — select the actual disk, not "Enter device manually"
+
+Recommended: pick the listed disk entry
+
+
+### Installation complete:
+
+- Continue → the VM reboots
+
+![](../screenshots/kali-setup/24-installation-complete.png)
+
+
+# Step 5 — First Boot 
+
+## To-dos (the clean version):
+
+- Log in with the username/password you created. 
+
+![](../screenshots/kali-setup/25-first-log-in.png)
+
+- Click **Log In**
+![](../screenshots/kali-setup/26-desktop-screen.png)
+
+- Open the **terminal** and type the following and hit **Enter**, then type user password when requested:  
+
+```bash
+sudo apt update && sudo apt full-upgrade -y
+```
+![](../screenshots/kali-setup/27-open-terminal.png)
+
+> **Note** This should be small and clean fresh install. 
+
+
+- Gets your clipboard sharing and proper screen resizing.
+
+```bash
+ sudo apt install -y open-vm-tools open-vm-tools-desktop
 ```
 
-Continue through the installation wizard.
+![](../screenshots/kali-setup/28-vm-tools.png)
 
----
+- Rebook the VM so changes can take effect: 
 
-# Step 5 — Configure User Account
-
-Create the primary user account.
-
-Example:
-
-```text
-Username:
-student
+```bash
+sudo reboot
 ```
+![](../screenshots/kali-setup/29-vm-reboot.png)
 
-Choose a strong password.
+Then immediately take a Snapshots of the clean state to revert to when you break something - I gurantee you, you will lol:
 
-> **Note**
->
-> Modern Kali Linux uses a standard user account instead of the historical root account.
+Fusion → Virtual Machine → Snapshots → Take Snapshot → name it Clean baseline
 
----
+> **Important:** That snapshot is your insurance. Anytime you break something experimenting, revert to it in seconds. Take a new snapshot after each major setup milestone.
 
-# Step 6 — Configure Storage
-
-When prompted:
-
-- Select **Guided — Use Entire Disk**
-- Choose the virtual disk
-- Select **All files in one partition**
-- Confirm the changes
-
-The installer will partition and format the virtual disk automatically.
-
----
-
-# Step 7 — Complete Installation
-
-After the installation finishes:
-
-1. Install the GRUB boot loader when prompted.
-2. Select the virtual disk as the boot device.
-3. Finish the installation.
-4. Remove the installation ISO if prompted.
-5. Reboot the virtual machine.
-
-Log in using the account created during installation.
-
----
-
-# Step 8 — Install VMware Tools
-
-Installing VMware Tools improves performance and enables features such as:
-
-- Dynamic display resizing
-- Improved mouse integration
-- Clipboard support
-- Shared time synchronization
-
-Install VMware Tools using VMware Fusion and reboot the virtual machine after installation.
-
----
-
+<!-- End Here -->
 # Step 9 — Configure the Network
 
-Verify the virtual machine is connected to the Host-Only adapter.
+Verify the virtual machine is connected to the Host-Only adapter. 
+
+
 
 Confirm the assigned IP address.
 
