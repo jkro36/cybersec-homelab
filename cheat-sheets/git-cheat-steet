@@ -82,7 +82,7 @@ git checkout -b feature/initial-structure   # create + switch to new branch
 git switch -c feature/initial-structure     # same thing, modern syntax
 
 git branch              # list local branches
-git branch -m new-branch-name	Rename the current branch
+git branch -m new-branch-name	# Rename the current branch
 git branch -m old-branch-name new-branch-name 	# Rename different local branch
 git branch -d branch-name   # delete a branch
 ```
@@ -103,7 +103,6 @@ git branch -d branch-name   # delete a branch
 ## 5. Daily Workflow
 
 ```bash
-
 git checkout main		# switch to main branch
 git pull origin main		# update the local main branch to match the remote main's branch
 git branch              	# list local branches
@@ -115,8 +114,6 @@ git restore <file>		# Discard changes in working directory.
 git status                  	# see what's changed
 git add .                   	# stage all changes or 
 git add file_name             	# stage only one file
-git restore --staged .		# un-stage only one file or directory
-git restore --staged filename	# un-stage all files and directories
 git commit -m "add message"	#commit changes
 git push origin current-branch-name
 
@@ -127,6 +124,14 @@ git checkout main		# switch to main branch
 git pull origin main		# update the local main branch to match the remote main's branch
 git checkout branch_name	# switch btw branches to update it against the local main branch 
 git rebase main  		# Update the said branch so it sits on top of updated main 
+
+```
+## Quick Fix
+
+```bash
+git restore --staged .		# un-stage only one file or directory
+git restore --staged filename	# unstage all files and directories
+git reset [file]      # unstage a file while retaining the changes in working directory
 
 ```
 

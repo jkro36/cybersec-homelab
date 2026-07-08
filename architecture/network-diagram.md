@@ -25,17 +25,17 @@
 │   │  ┌──────────────────────────────────────────────────────┐    │  │
 │   │  │         VICTIM MACHINES (what gets attacked)         │    │  │
 │   │  │                                                      │    │  │
-│   │  │  Windows Server            Windows 10 Workstation    │    │  │
-│   │  │  192.168.36.30             192.168.36.40             │    │  │
-│   │  │  (Active Directory DC)    (regular employee PC)      │    │  │
+│   │  │  Windows Server                                      │    │  │
+│   │  │  192.168.36.30                                       │    │  │
+│   │  │  (Active Directory DC)                               │    │  │
 │   │  │                                                      │    │  │
-│   │  │  Windows Server            Windows 10 Workstation    │    │  │
-│   │  │  192.168.36.30             192.168.36.40             │    │  │
-│   │  │  (Active Directory DC)    (regular employee PC)      │    │  │
+│   │  │  Windows 10 Workstation                              │    │  │
+│   │  │  192.168.36.40                                       │    │  │
+│   │  │  (regular PC)                                        │    │  │
 │   │  │                                                      │    │  │
-│   │  │  Windows Server            Windows 10 Workstation    │    │  │
-│   │  │  192.168.36.30             192.168.36.40             │    │  │
-│   │  │  (Active Directory DC)    (regular employee PC)      │    │  │
+│   │  │  Mobile (Android)          Mobile (ios)              │    │  │
+│   │  │  IP: Coming soon           IP: Coming soon           │    │  │
+│   │  │  (Mobile Device)          (Mobile Device)            │    │  │
 │   │  └──────────────────────────────────────────────────────┘    │  │
 │   │                                                              │  │
 │   │                                                              │  │
