@@ -6,17 +6,19 @@ A fully isolated multi-VM security research environment using VMware Fusion. Thi
 ## Lab Architecture
 - **Host:** macOS (Apple Silicon)
 - **Hypervisor:** VMware Fusion
-- **Network:** Host-Only (192.168.100.0/24)
+- **Network:** Host-Only (192.168.36.0/24)
 
 ### VMs:
 
-├── Kali Linux C2 Server     — 192.168.100.10
+├── Kali Linux - Attacker (C2 Server)     — 192.168.36.10
 
-├── Windows Victim        — 192.168.100.20
+├── Security Onion Defender — 192.168.36.20
 
-├── Windows Server Victim    — 192.168.100.30
+├── Windows Server - Victim    — 192.168.36.30
 
-└── Security Onion Defender  — 192.168.100.40
+├── Windows 10 - Victim    — 192.168.36.40
+
+└── Windows 11 - Victim   — 192.168.36.50
 
 ## Tools and Frameworks
 - **C2 Frameworks:** Metasploit, Sliver

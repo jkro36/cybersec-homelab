@@ -26,5 +26,8 @@ credentials/
 logs/
 
 # Not ready to commit
-
 ./screenshots/kali-setup/Screenshot*.png
+Screenshot*.png
+**/Screenshot*.png
+./screenshots/security-onion/Screenshot*.png
+
