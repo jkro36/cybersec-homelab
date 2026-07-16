@@ -33,7 +33,7 @@ Before beginning, ensure you have completed the following:
 - [VMware Setup](setup-guides/01-vmware-setup.md)
 - [Network Configuration](setup-guides/02-network-setup.md)
 - At least **120 GB** of available storage is available.
-- At least **16 GB** of physical RAM is installed (32 GB recommended for multiple VMs).
+- At least **4 GB** of physical RAM is available
 - The latest Kali Linux Installer ISO has been downloaded.
 
 
@@ -101,8 +101,6 @@ Click **Apply**.
 ---
 
 # Step 4 — Install Kali Linux
-
-<!-- Start here -->
 
 ### Boot menu loads up: 
  

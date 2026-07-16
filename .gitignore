@@ -31,3 +31,7 @@ Screenshot*.png
 **/Screenshot*.png
 ./screenshots/security-onion/Screenshot*.png
 
+./02-post-network-connection/victim-machines-setup.md
+**/victim-machines-setup.md
+./02-post-network-connection
+
