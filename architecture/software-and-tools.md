@@ -23,8 +23,10 @@ This document outlines the software, operating systems, and security tools used 
 |-----------------|-----------|---------|
 | Kali Linux | 192.168.36.10 | Attack workstation / Command & Control |
 | Security Onion | 192.168.36.20 | Network monitoring and threat detection |
-| Windows Server | 192.168.36.30 | Active Directory Domain Controller |
-| Windows 10 | 192.168.36.40 | Domain-joined victim workstation |
+| Windows 11 | 192.168.36.30 | Domain-joined victim workstation |
+| Windows 2022 Server | 192.168.36.40 | Active Directory Domain Controller |
+| Windows 2022 Server | 192.168.36.41 | Active Directory Domain Controller |
+| Windows 10 | 192.168.36.31 | Domain-joined victim workstation |
 
 ---
 
@@ -174,6 +176,7 @@ Windows 10 represents a standard enterprise workstation used during offensive an
 Planned additions include:
 
 - Metasploitable 2
+- macOS
 - Ubuntu Server
 
 ## ⚠️  Disclaimer
