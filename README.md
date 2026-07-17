@@ -14,21 +14,28 @@ A fully isolated multi-VM security research environment using VMware Fusion. Thi
 
 ├── Security Onion Defender — 192.168.36.20
 
-├── Windows Server - Victim    — 192.168.36.30
+├── Windows 11 - Victim    — 192.168.36.30
 
-├── Windows 10 - Victim    — 192.168.36.40
+├── Windows Server 2022 - Victim    — 192.168.36.40
 
-└── Windows 11 - Victim   — 192.168.36.50
+├── Windows 10 - Victim   — 192.168.36.31
+
+└── Windows Server 2025 - Victim    — 192.168.36.41
 
 ## Tools and Frameworks
 - **C2 Frameworks:** Metasploit, Sliver
 - **Detection:** Security Onion with Suricata, Zeek, Kibana
 - **Analysis:** Wireshark, NetworkMiner
 - **Payloads:** msfvenom
+- **Reconnaissance / Scanning:** nmap
+- **Network Attacks (MITM):** arp spoofing/poisoning, bettercap
+- **Wireless Attacks:** airodump-ng
+- **Web Application Security:** Burp Suite
+- **Exploitation (Client-Side/Browser):** BeEF
 
 ## Exercises Completed
-- [Exercise 01 — Basic C2 Setup and Session Establishment](exercises/01-exercise-c2.md)
-- [Exercise 02 — C2 Traffic Detection with Security Onion](exercises/02-exercise-detection.md)
+- [Exercise 01 — Air-gapped Network Setup](exercises/01-air-gapped-network-setup)
+- [Exercise 02 — Post Network Connection Attacks](exercises/02-post-network-connection)
 
 ## Skills Demonstrated
 - Network segmentation and air-gapped lab design
