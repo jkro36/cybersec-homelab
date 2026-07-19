@@ -83,7 +83,24 @@ Follow the steps below to create a VM in VMware Fusion for our ISO image:
 - Close the `Settings` window.
 - At the window for your new VM, click the `Play` button to power on the virtual machine.
 
-## Step 3: Advance Installation
+## Step 3. Enable Virtualization Technology (VT-x)
+
+> **Note:** VM couldn't boot due to a system error: `The host supports Intel VT-x, but Intel VT-x is disable`
+
+### Fix Step 1: Enable Intel Virtualization in BIOS
+1.  Shut down the system completely
+2. Power it on and press F1 repeatedly to enter the BIOS Setup.
+3. Navigate: Security --> Virtualization
+4.  Make sure these are enabled:
+    > `Intel (R) Virtualization Technology (VT-x). `    `Intel VT-d Feature (optional but recommended)`
+5.  Press F10 to Save and Exit.
+
+### Fix Step 2: Make sure Firmware Type is `UEFI` and not `BIOS`
+
+- 
+
+## Step 4: Advance Installation
+
 
 After booting the ISO image, the boot menu appears:
 
