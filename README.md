@@ -53,7 +53,7 @@ Traditional passive network monitoring is not viable in the current bridged arch
 - Windows Server 2022 (10.0.0.40)
 - Windows Server 2025 (10.0.0.41)
 
-> All personal home network devices are intentionally excluded from monitoring.
+> All non-lab devices are intentionally excluded from monitoring.
  
 ---
  
@@ -133,11 +133,10 @@ BloodHound, Impacket, CrackMapExec, Mimikatz
  
 ## Planned Upgrades
  
+- [X] Add Windows 10 VM to Intel x86/x64 machine
 - [ ] Acquire network switch for dedicated isolated lab network (v3 architecture)
 - [ ] Enable passive Security Onion network monitoring via switch span port
-- [ ] Add Windows 10 VM to Intel x86 machine
 - [ ] Complete Active Directory configuration (lab.local domain)
-- [ ] Enroll all machines in Elastic Agent Fleet
 - [ ] Add PCAP import exercise walkthroughs
 ---
  
