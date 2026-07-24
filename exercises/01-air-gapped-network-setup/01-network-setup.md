@@ -3,9 +3,9 @@ Last Updated: June 30, 2026
 
  -->
 
-**Step 3: Create a Custom Host-Only Network**
+**Create a Custom Host-Only Network**
 
-This is critical — you need to create a dedicated isolated network just for your lab VMs.
+This step is critical because it creates a dedicated isolated network for the lab VMs.
 
 In VMware Fusion:
 1. Open **VMware Fusion** → Menu bar → **VMware Fusion** → **Settings** (or Preferences)

@@ -6,7 +6,7 @@ Last Updated: June 29, 2026
 
 ## Overview
 
-This document describes the virtual network design for the lab, the isolation-vs-internet-access problem encountered during design, the options considered, and the two-adapter solution adopted. It includes both the reasoning (so the design is understood, not just copied) and the step-by-step configuration.
+This document describes the virtual network design for the lab, the isolation-versus-internet-access problem encountered during implementation, the options I considered, and the two-adapter solution I adopted. It includes both the reasoning behind the design and the step-by-step configuration so the setup can be reproduced and documented clearly.
 
 ---
 
