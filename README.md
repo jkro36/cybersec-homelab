@@ -25,7 +25,7 @@ If you are new to this repository, start here:
    - [Windows Server 2022](setup-guides/07-windows-server-22-setup.md)
    - [Windows Server 2025](setup-guides/08-windows-server-25-setup.md)
 4. Continue with the exercises in the order listed under Exercises Completed.
-
+---
 ## Lab Status
 
 | Area | Status | Notes |
