@@ -6,14 +6,14 @@ This document outlines the software, operating systems, and security tools used 
 
 ---
 
-# Host System
+# Host Systems
 
 | Component | Specification |
 |-----------|---------------|
-| Operating System | macOS |
-| Hypervisor | VMware Fusion |
-| Network Mode | Host-Only |
-| Lab Network | 192.168.36.0/24 |
+| Operating System | macOS, Windows 10|
+| Hypervisor | VMware Fusion and Workstation|
+| Network Mode | Local Area Network / Bridge Mode |
+| Lab Network | 10.0.0.0/24 |
 
 ---
 
