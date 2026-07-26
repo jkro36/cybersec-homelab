@@ -116,8 +116,8 @@ airodump-ng
 - **Web Application Security:**
 Burp Suite
  
-- **Exploitation (Client-Side/Browser):**
-BeEF
+- **Client-Side Exploitation:**
+BeEF (Browser Exploitation Framework)
  
 - **Active Directory:**
 BloodHound, Impacket, CrackMapExec, Mimikatz
@@ -126,7 +126,7 @@ BloodHound, Impacket, CrackMapExec, Mimikatz
 
 
 ## Exercises Completed
-- [Exercise 01 — Air-gapped Network Setup](exercises/01-air-gapped-network-setup) — Deferred / not executed due to architecture and monitoring limitations documented in [ADR-001](architecture/decisions/ADR-001-network-topology-change.md)
+- [Exercise 01 — Air-gapped Network Architechture Design and ADR](exercises/01-air-gapped-network-setup) — Completed. Original air-gapped design revised to bridged architecture. See [ADR-001](architecture/decisions/ADR-001-network-topology-change.md).
 - [Exercise 1.1 — Pre-Network Connection](exercises/1.1-pre-network-connection) — Wireless adapter setup, monitor mode, and lab reporting workflow
 - [Exercise 02 — Post Network Connection Attacks](exercises/02-post-network-connection)
 

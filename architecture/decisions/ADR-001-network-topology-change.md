@@ -1,7 +1,7 @@
 # ADR-001 — Network Topology Change
 **Status:** Accepted  
 **Date:** July 2026  
-**Author:** J. Kro
+**Author:** jkro36
 
 ---
 
