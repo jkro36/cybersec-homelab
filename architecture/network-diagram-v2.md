@@ -104,8 +104,8 @@ Lab Static IP Range: 10.0.0.0/24
 
 ### DNS Configuration
 ```
-All lab machines DNS Primary:   10.0.0.30  (Windows Server 2022 DC)
-All lab machines DNS Alternate: 8.8.8.8
+All lab machines DNS Primary:   10.0.0.40  (Windows Server 2022 DC)
+All lab machines DNS Alternate: 10.0.0.41
 ```
 
 ---
@@ -121,7 +121,7 @@ Lab Machines (all)
                 │
                 └── Enrolled in Fleet
                         │
-                        └── Security Onion Fleet Server (10.0.0.50)
+                        └── Security Onion Fleet Server (10.0.0.20)
                                 │
                                 ├── Endpoint logs
                                 ├── Process telemetry
@@ -134,7 +134,7 @@ Lab Machines (all)
 **Machines with Elastic Agent:**
 - Kali Linux ARM (10.0.0.10)
 - Security Onion itself (10.0.0.20)
-- Windows 11 ARM (10.0.0.30)
+- Windows 10 (10.0.0.30)
 - Windows 11 ARM (10.0.0.31)
 - Windows Server 2022 (10.0.0.40)
 - Windows Server 2025 (10.0.0.41)
@@ -191,6 +191,7 @@ Windows 11 VM:  Network Adapter → Bridged → Autodetect
 ### Intel x86 Machine (VMware Workstation)
 ```
 Security Onion:      Network Adapter → Bridged → Intel Ethernet (auto)
+Windows 10: Network Adapter → Bridged → Intel Ethernet (auto)
 Windows Server 2022: Network Adapter → Bridged → Intel Ethernet (auto)
 Windows Server 2025: Network Adapter → Bridged → Intel Ethernet (auto)
 ```
@@ -262,7 +263,7 @@ Dedicated Lab Switch (192.168.36.0/24) — Isolated, no internet
         ├── Security Onion  192.168.36.20
         │   └── Passive monitoring interface (span/mirror)
         ├── Win Server 2022 192.168.36.40
-        ├── Win Server 2022 192.168.36.30
+        ├── Windows 10 VM 2010 192.168.36.30
         └── Win Server 2025 192.168.36.41
 ```
 
@@ -270,7 +271,7 @@ Dedicated Lab Switch (192.168.36.0/24) — Isolated, no internet
 - Security Onion passive monitoring interface on the switch
 - Full packet capture of all lab traffic without manual PCAP import
 - Elastic Agent Fleet retained as additional endpoint telemetry layer
-- True network isolation — no lab traffic on home network
+- True network isolation — no lab traffic on the entire LAN. 
 
 **Hardware needed:**
 - Switch with capability to handle lab requirements.
