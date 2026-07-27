@@ -6,7 +6,7 @@ This exercise folder documents the setup and validation of a wireless
 analysis environment in Kali Linux, followed by hands-on testing of
 common wireless security protocols in a controlled, authorized lab
 environment. It covers everything required before active wireless
-attack exercises can begin — hardware configuration, monitor mode
+attack exercises can begin, from  hardware configuration, monitor mode
 verification, and protocol-specific reconnaissance and attack workflows
 across WEP, WPA, WPA2, and WPA3.
 
