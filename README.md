@@ -30,8 +30,8 @@ If you are new to this repository, start here:
 
 | Area | Status | Notes |
 |---|---|---|
-| Core lab architecture | Complete | Bridged lab network implemented with static IPs |
 | Air-gapped network exercise | Deferred | Not executed due to architecture and monitoring constraints |
+| Core lab architecture | Complete | Bridged lab network implemented with static IPs |
 | Offensive exercises | In progress | Core attack and reconnaissance workflows documented |
 | Defensive monitoring | In progress | Endpoint telemetry and IoC documentation in progress |
 | Planned isolated switch upgrade | Planned | Future v3 architecture improvement |
