@@ -1,9 +1,10 @@
 
 # Adapter Setup — Steps
 
-**Date:** July 2026
+
 **Status:** Complete
-**Findings:** [findings.md](./findings.md)
+
+**Findings:** [Findings](./findings.md)
 
 ---
 
@@ -12,10 +13,9 @@
 | Component | Details |
 |-----------|---------|
 | Machine | Kali Linux ARM64 — 10.0.0.10 |
-| Hypervisor | VMware Fusion (Apple Silicon Mac) |
-| Wireless adapter | [Your adapter model — e.g., Alfa AWUS036ACH] |
-| Chipset | [Your chipset — e.g., RTL8812AU] |
-| Interface name | wlan0 (confirm with `ip a` — may differ) |
+| Hypervisor | VMware Fusion |
+| Wireless adapter | **RTL8812AU** |
+| Interface name | wlan0 (confirmed with `ip a` — may differ) |
 | Snapshot taken | kali-pre-exercise-1.1-2026-07 |
 
 ---
@@ -29,17 +29,16 @@
 
 ---
 
-## Step 1 — Pass the USB Adapter Through to the Kali VM
+## Step 1: Pass the USB Adapter Through to the Kali VM
 
-The Mac's built-in Wi-Fi adapter cannot be passed to a VM — macOS
-manages it directly. The USB adapter connects to the USB bus, which
-VMware Fusion can hand off entirely to Kali.
+The host built-in Wi-Fi adapter cannot be passed to the VM. So we use the USB adapter which connects to the USB bus that
+VMware can hand off entirely to Kali.
 
 ```
 1. Plug the USB wireless adapter into the Mac.
 2. In VMware Fusion menu bar:
    Virtual Machine → USB & Bluetooth → [your adapter name]
-3. Select "Connect to [VM Name]"
+3. Select "Connect to **Kali Linux**"
 4. Confirm the dialog if macOS prompts.
 ```
 
@@ -232,24 +231,24 @@ Killed: wpa_supplicant (PID 5678)
 PHY     Interface   Driver      Chipset
 phy0    wlan0       rtl88XXau   Realtek Semiconductor...
 
-(mac80211 monitor mode vif enabled on [phy0]wlan0mon)
+(mac80211 monitor mode vif enabled on [phy0]wlan0)
 (mac80211 station mode vif disabled for [phy0]wlan0)
 ```
 
 The interface may rename to `wlan0mon`. Use `wlan0mon` in all
-subsequent commands if this happens.
+subsequent commands if this happens. But for our case, it is `wlan0`.
 
 Verify:
 ```bash
-iwconfig wlan0mon
+iwconfig wlan0
 ```
 ```
-wlan0mon  IEEE 802.11  Mode:Monitor  Frequency:2.412 GHz
+wlan0  IEEE 802.11  Mode:Monitor  Frequency:2.412 GHz
 ```
 
 Return to managed mode when finished:
 ```bash
-sudo airmon-ng stop wlan0mon
+sudo airmon-ng stop wlan0
 sudo systemctl restart NetworkManager
 ```
 
@@ -258,7 +257,7 @@ sudo systemctl restart NetworkManager
 ## Step 6 — Verify Packet Injection
 
 ```bash
-aireplay-ng --test wlan0mon
+aireplay-ng --test wlan0
 ```
 
 **Expected output:**
@@ -277,7 +276,7 @@ exercises that require active packet injection (WEP, deauth).
 
 **Check supported bands:**
 ```bash
-iw list | grep -A 30 "Frequencies:"
+iw list 
 ```
 
 2.4 GHz channels appear as 2412–2484 MHz.
@@ -287,19 +286,19 @@ iw list | grep -A 30 "Frequencies:"
 
 ```bash
 # 2.4 GHz — Channel 6 (most common home router channel):
-sudo ip link set wlan0mon down
-sudo iw dev wlan0mon set freq 2437
-sudo ip link set wlan0mon up
+sudo ip link set wlan0 down
+sudo iw dev wlan0 set freq 2437
+sudo ip link set wlan0 up
 
 # 5 GHz — Channel 36:
-sudo ip link set wlan0mon down
-sudo iw dev wlan0mon set freq 5180
-sudo ip link set wlan0mon up
+sudo ip link set wlan0 down
+sudo iw dev wlan0 set freq 5180
+sudo ip link set wlan0 up
 ```
 
 **Verify:**
 ```bash
-iw dev wlan0mon info
+iw dev wlan0 info
 ```
 
 ---
@@ -307,7 +306,7 @@ iw dev wlan0mon info
 ## Step 8 — Scan for Lab Networks
 
 ```bash
-sudo airodump-ng wlan0mon
+sudo airodump-ng wlan0
 ```
 
 **Reading the output:**
@@ -333,7 +332,7 @@ protocol-specific exercise that follows.
 
 **Scan both 2.4 GHz and 5 GHz simultaneously:**
 ```bash
-sudo airodump-ng --band abg wlan0mon
+sudo airodump-ng --band abg wlan0
 ```
 
 Note: the adapter hops between frequencies when scanning both bands,
@@ -346,5 +345,5 @@ channel of the target AP.
 ## Next
 
 Adapter is configured and verified.
-Proceed to: [findings.md](./findings.md) to document what was observed.
+Proceed to: [Findings](./findings.md).
 Then begin protocol exercises starting with [../wep/steps.md](../wep/steps.md).
