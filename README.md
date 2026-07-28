@@ -15,6 +15,7 @@ If you are new to this repository, start here:
 2. Review the lab architecture and network assumptions below.
 3. Follow the setup guides in order:
    - [Network Configuration](architecture/network-diagram-v2.md)
+   - [Software and Tools](architecture/software-and-tools.md)
    - [VMware Setup](setup-guides/01-vmware-setup.md)
    - [Kali Linux Setup](setup-guides/03-kali-setup.md)
    - [Windows 10 Setup](setup-guides/06-windows10-setup.md)
@@ -26,109 +27,11 @@ If you are new to this repository, start here:
    - [Windows Server 2025](setup-guides/08-windows-server-25-setup.md)
 4. Continue with the exercises in the order listed under Exercises Completed.
 ---
-## Lab Status
-
-| Area | Status | Notes |
-|---|---|---|
-| Air-gapped network exercise | Deferred | Not executed due to architecture and monitoring constraints |
-| Core lab architecture | Complete | Bridged lab network implemented with static IPs |
-| Offensive exercises | In progress | Core attack and reconnaissance workflows documented |
-| Defensive monitoring | In progress | Endpoint telemetry and IoC documentation in progress |
-| Planned isolated switch upgrade | Planned | Future v3 architecture improvement |
-
----
-
-## Lab Architecture
  
-### Machine 1 — Apple Silicon Mac
-- **Hypervisor:** VMware Fusion
-- **Role:** Attack and ARM victim workstation
-- **Network:** Bridged Mode
-### Machine 2 — Intel x86/x64 Compatible Machine
-- **Hypervisor:** VMware Workstation
-- **Role:** Windows infrastructure and security monitoring
-- **Network:** Bridged Mode
-### Network
-- **Topology:** Bridged (interim — isolated switch planned)
-- **Subnet:** 10.0.0.0/24
-- **IP Assignment:** Static, outside home router DHCP range
-
-### VMs
-
-```
-Apple Silicon Mac (VMware Fusion)
-├── Kali Linux - Attacker (C2 Server)- -  - 10.0.0.10
-└── Windows 11 — Victim Workstation -  -  - 10.0.0.31
- 
-Intel x86/x64 Machine (VMware Workstation)
-├── Security Onion — Defender / SIEM  - - - 10.0.0.20
-├── Windows Server 2022 — Primary DC- - - - 10.0.0.40
-├── Windows Server 2025 — Secondary DC- - - 10.0.0.41
-└── Windows 10 — Victim Workstation - - - - 10.0.0.30
-```
----
-## Security Monitoring Approach
- 
-Full passive network monitoring is not viable in the current bridged architecture without a dedicated switch. Because Security Onion is limited to endpoint-based visibility in this environment, the defensive focus is on documenting potential indicators of compromise (IoCs), likely attack paths, and observable behaviors from endpoint telemetry rather than claiming complete network-side detection coverage.
- 
-The following hybrid approach is used:
- 
-| Method | Description | Status |
-|---|---|---|
-| **Elastic Agent via Fleet** | Agents installed on all lab machines ship endpoint telemetry, logs, and network connection data to Security Onion Fleet server | Primary method |
-| **PCAP Import** | Packet captures from lab exercises manually imported into Security Onion for network level analysis | Secondary method |
- 
-**Machines with Elastic Agent enrolled in Fleet:**
-- Kali Linux (10.0.0.10)
-- Security Onion itself (10.0.0.20)
-- Windows 10 (10.0.0.30)
-- Windows 11 (10.0.0.31)
-- Windows Server 2022 (10.0.0.40)
-- Windows Server 2025 (10.0.0.41)
-
-> All non-lab devices are intentionally excluded from monitoring.
- 
----
- 
-
-## Tools and Frameworks
-- **C2 Frameworks:**
-Metasploit, Sliver
- 
-- **Detection and Monitoring:**
-Security Onion, Suricata, Zeek, Kibana, Elastic Agent, Fleet
- 
-- **Analysis:**
-Wireshark, NetworkMiner
- 
-- **Payloads:**
-msfvenom
- 
-- **Reconnaissance and Scanning:**
-Nmap
- 
-- **Network Attacks (MITM):**
-ARP spoofing/poisoning, Bettercap
- 
-- **Wireless Attacks:**
-airodump-ng
- 
-- **Web Application Security:**
-Burp Suite
- 
-- **Client-Side Exploitation:**
-BeEF (Browser Exploitation Framework)
- 
-- **Active Directory:**
-BloodHound, Impacket, CrackMapExec, Mimikatz
- 
----
-
-
 ## Exercises Completed
-- [Exercise 01 — Air-gapped Network Architechture Design and ADR](exercises/01-air-gapped-network-setup) — Completed. Original air-gapped design revised to bridged architecture. See [ADR-001](architecture/decisions/ADR-001-network-topology-change.md).
-- [Exercise 1.1 — Pre-Network Connection](exercises/1.1-pre-network-connection) — Wireless adapter setup, monitor mode, and lab reporting workflow
-- [Exercise 02 — Post Network Connection Attacks](exercises/02-post-network-connection)
+- [Exercise 01: Air-gapped Network Architechture Design and ADR](exercises/01-air-gapped-network-setup) — Completed. Original air-gapped design revised to bridged architecture. See [ADR-001](architecture/decisions/ADR-001-network-topology-change.md).
+- [Exercise 1.1: Pre-Network Connection](exercises/1.1-pre-network-connection) — Wireless adapter setup, monitor mode, and lab reporting workflow
+- [Exercise 02: Post Network Connection Attacks](exercises/02-post-network-connection)
 
 
 ## Skills Demonstrated
@@ -148,8 +51,6 @@ BloodHound, Impacket, CrackMapExec, Mimikatz
 - Technical documentation and Architecture Decision Records (ADR)
 ---
  
-
-
 ## Setup Guides
 
 - [Network Configuration](architecture/network-diagram-v2.md) 
