@@ -26,9 +26,10 @@ Then inside each VM, configure a static IP manually in the guest OS network sett
 ``` text
 - Kali - Attacker: static 192.168.36.10
 - Security Onion - Defender: static 192.168.36.20
-- Window server - victim: 192.168.36.30
-- Window 10 - victim: 192.168.36.40
-- Window 11 - victim: 192.168.36.50
+- Window 11 - victim: 192.168.36.30
+- Window 10 - victim: 192.168.36.31
+- Window server 2022 - victim: 192.168.36.40
+- Window server 2025 - victim: 192.168.36.41
 - etc.
 ```
 

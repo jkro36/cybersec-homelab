@@ -30,7 +30,7 @@
 │   │  │  (Active Directory DC)     (Active Directory DC)     │    │  │
 │   │  │                                                      │    │  │
 │   │  │  Windows 11 Workstation     Windows 10 Workstation   │    │  │
-│   │  │  192.168.36.31              192.168.36.30            │    │  │
+│   │  │  192.168.36.30              192.168.36.31            │    │  │
 │   │  │  (Workstation)               (Workstation)             │    │  │
 │   │  │                                                      │    │  │
 │   │  │  Mobile (Android)          Mobile (ios)              │    │  │

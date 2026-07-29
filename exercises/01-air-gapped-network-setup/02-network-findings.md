@@ -99,8 +99,10 @@ Each VM has:
 | VM | Air-gap IP |
 |---|---|
 | Kali (attacker) | `192.168.36.10` |
-| Windows 10 (victim) | `192.168.36.40` |
-| Windows Server | `192.168.36.30` |
+| Windows 11 (victim) | `192.168.36.30` |
+| Windows 10 (victim) | `192.168.36.31` |
+| Windows Server 2022 | `192.168.36.40` |
+| Windows Server 2022 | `192.168.36.41` |
 
 (Assign statics in a low range, well outside the DHCP hand-out range, to prevent collisions.)
 

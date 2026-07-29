@@ -125,8 +125,8 @@ Elastic Agents are installed directly on each monitored lab machine and enrolled
 **Machines receiving Elastic Agent:**
 - Kali Linux ARM (10.0.0.10)
 - Security Onion (10.0.0.20)
-- Windows 10 ARM (10.0.0.30)
-- Windows 11 ARM (10.0.0.31)
+- Windows 11 ARM (10.0.0.30)
+- Windows 10 x86/x64 (10.0.0.31)
 - Windows Server 2022 (10.0.0.40)
 - Windows Server 2025 (10.0.0.41)
 
@@ -156,12 +156,12 @@ Home Router
     ├── Apple Silicon Mac
     │   └── VMware Fusion (Bridged)
     │       ├── Kali Linux ARM    10.0.0.10
-    │       └── Windows 11 ARM    10.0.0.31
+    │       └── Windows 11 ARM    10.0.0.30
     │
     └── Intel x86/x64 Machine
         └── VMware Workstation (Bridged)
             ├── Security Onion    10.0.0.20
-            ├── Windows 10 x64    10.0.0.30
+            ├── Windows 10 x64    10.0.0.31
             ├── Win Server 2022   10.0.0.40
             └── Win Server 2025   10.0.0.41
 ```
@@ -177,7 +177,7 @@ Isolated Host-Only Network — Air Gapped
             └── VMware Fusion Host-Only
                 ├── Kali Linux ARM     192.168.36.10
                 ├── Windows 10 x64     192.168.36.31
-                ├── Windows 11 ARM     192.168.36.31
+                ├── Windows 11 ARM     192.168.36.30
                 ├── Security Onion     192.168.36.20  ← not viable on ARM
                 ├── Windows Server 22  192.168.36.40  ← not viable on ARM
                 └── Windows Server 25  192.168.36.41  ← not viable on ARM
