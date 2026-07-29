@@ -34,8 +34,7 @@ Network DHCP Range: [DHCPRange: 10.0.0.99 - 10.0.0.253 — do not use IP in thei
     │       └── Windows 11 ARM VM
     │           Role:      Victim Workstation
     │           OS:        Windows 11 Pro ARM64
-    │           IP:        10.0.0.31 (static, outside DHCP range)
-    │           State:     Defender OFF, Firewall OFF, SMBv1 ON
+    │           IP:        10.0.0.30 (static, outside DHCP range)
     │           Domain:    lab.local (pending DC setup)
     │           Agent:     Elastic Agent (Fleet enrolled)
     │
@@ -52,6 +51,13 @@ Network DHCP Range: [DHCPRange: 10.0.0.99 - 10.0.0.253 — do not use IP in thei
             │   Does NOT:  Passively monitor entire network traffic
             │   Agent:     Elastic Agent (self monitored)
             │
+            ├── Windows 10 VM
+            │   Role:      Victim Workstation
+            │   OS:        Windows 10 (x64)
+            │   IP:        10.0.0.31 (static, outside DHCP range)
+            │   Domain:    lab.local (pending DC setup)
+            │   Agent:     Elastic Agent (Fleet enrolled)
+            |
             ├── Windows Server 2022 VM
             │   Role:      Primary Domain Controller
             │   OS:        Windows Server 2022 (x86)
@@ -75,8 +81,8 @@ Network DHCP Range: [DHCPRange: 10.0.0.99 - 10.0.0.253 — do not use IP in thei
 |---|---|---|---|---|---|---|
 | Kali Linux | Attacker | Apple Silicon Mac | VMware Fusion | Kali ARM64 | 10.0.0.10 | Yes |
 | Security Onion | Defender | Intel x86/x64 Machine | VMware Workstation | Security Onion 3.1.0 | 10.0.0.20 | Yes (self) |
-| Windows 10 | Victim Workstation | Intel x86/x64 Machine| VMware Workstation | Win 10 x64 | 10.0.0.30 | Yes |
-| Windows 11 | Victim Workstation | Apple Silicon Mac | VMware Fusion | Win 11 ARM | 10.0.0.31 | Yes |
+| Windows 10 | Victim Workstation | Intel x86/x64 Machine| VMware Workstation | Win 10 x64 | 10.0.0.31 | Yes |
+| Windows 11 | Victim Workstation | Apple Silicon Mac | VMware Fusion | Win 11 ARM | 10.0.0.30 | Yes |
 | Windows Server 2022 | Primary DC | Intel x86/x64 Machine| VMware Workstation | WS 2022 x64 | 10.0.0.40 | Yes |
 | Windows Server 2025 | Secondary DC | Intel x86/x64 Machine | VMware Workstation | WS 2025 x64 | 10.0.0.41 | Yes |
 
@@ -93,8 +99,8 @@ Lab Static IP Range: 10.0.0.0/24
 ```
 10.0.0.10   Kali Linux ARM (Attacker)
 10.0.0.20   Security Onion (Defender)
-10.0.0.30   Windows 10 x64 (Victim Workstation)
-10.0.0.31   Windows 11 ARM (Victim Workstation)
+10.0.0.31   Windows 10 x64 (Victim Workstation)
+10.0.0.30   Windows 11 ARM (Victim Workstation)
 10.0.0.40   Windows Server 2022 (Primary DC)
 10.0.0.41   Windows Server 2025 (Secondary DC)
 ```
@@ -134,8 +140,8 @@ Lab Machines (all)
 **Machines with Elastic Agent:**
 - Kali Linux ARM (10.0.0.10)
 - Security Onion itself (10.0.0.20)
-- Windows 10 (10.0.0.30)
-- Windows 11 ARM (10.0.0.31)
+- Windows 10 (10.0.0.31)
+- Windows 11 ARM (10.0.0.30)
 - Windows Server 2022 (10.0.0.40)
 - Windows Server 2025 (10.0.0.41)
 
@@ -205,8 +211,8 @@ Run these tests to confirm all devices can communicate before starting lab exerc
 ```bash
 # From Kali VM — ping all lab devices
 ping -c 4 10.0.0.20    # Security Onion
-ping -c 4 10.0.0.30    # Windows 10 
-ping -c 4 10.0.0.31    # Windows 11 
+ping -c 4 10.0.0.31    # Windows 10 
+ping -c 4 10.0.0.30    # Windows 11 
 ping -c 4 10.0.0.40    # Windows Server 2022
 ping -c 4 10.0.0.41    # Windows Server 2025
 
@@ -218,7 +224,7 @@ ping 10.0.0.20         # Security Onion
 
 # From Security Onion
 ping 10.0.0.10         # Kali
-ping 10.0.0.31         # Windows 11
+ping 10.0.0.30         # Windows 11
 ping 10.0.0.40         # Windows Server 2022
 ```
 
@@ -257,13 +263,13 @@ Dedicated Lab Switch (192.168.36.0/24) — Isolated, no internet
     │
     ├── Mac (via USB Ethernet adapter)
     │   ├── Kali VM        192.168.36.10
-    │   └── Windows 11 VM  192.168.36.31
+    │   └── Windows 11 VM  192.168.36.30
     │
     └── Intel x86 Machine (via Ethernet)
         ├── Security Onion  192.168.36.20
         │   └── Passive monitoring interface (span/mirror)
         ├── Win Server 2022 192.168.36.40
-        ├── Windows 10 VM 2010 192.168.36.30
+        ├── Windows 10 VM 2010 192.168.36.31
         └── Win Server 2025 192.168.36.41
 ```
 

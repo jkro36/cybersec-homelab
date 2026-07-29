@@ -45,9 +45,9 @@ This document outlines the software, operating systems, and security tools used 
 | Kali Linux | 10.0.0.10 | Attack workstation / Command & Control |
 | Security Onion | 10.0.0.20 | Network monitoring and threat detection |
 | Windows 11 | 10.0.0.30 | Domain-joined victim workstation |
+| Windows 10 | 10.0.0.31 | Domain-joined victim workstation |
 | Windows 2022 Server | 10.0.0.40 | Active Directory Domain Controller |
 | Windows 2022 Server | 10.0.0.41 | Active Directory Domain Controller |
-| Windows 10 | 10.0.0.31 | Domain-joined victim workstation |
 
 ---
 
@@ -96,8 +96,8 @@ The following hybrid approach is used:
 **Machines with Elastic Agent enrolled in Fleet:**
 - Kali Linux (10.0.0.10)
 - Security Onion itself (10.0.0.20)
-- Windows 10 (10.0.0.30)
-- Windows 11 (10.0.0.31)
+- Windows 10 (10.0.0.31)
+- Windows 11 (10.0.0.30)
 - Windows Server 2022 (10.0.0.40)
 - Windows Server 2025 (10.0.0.41)
 
